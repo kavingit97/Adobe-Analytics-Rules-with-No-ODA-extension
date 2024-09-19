@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Collection || Non AA Tags Identification</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="loading" hidden>Loading&#8230;</div>
+    <div id="right-panel" class="right-panel">
+        <header>
+            <nav class="navbar navbar-light" style="background-color: #003c71;">
+              <b style="color: #ffffff;">Data Collection | Non Adobe Analytics Tags</b>
+            </nav>
+        </header>
+
+        <div class="content mt-4">
+            <main role="main" class="container-fluid">
+                <div class="starter-template noprint">
+                  <form>
+                    <div class="form-group">
+                        <div class="ui-widget">
+                          <label for="scriptTags"><b>Enter Adobe Launch Script</b></label>
+                          <input type="text" size="70" name="rsidName" class="form-control ui-autocomplete-input" id="scriptTags" value="" autocomplete="off">
+                        </div>
+    
+                    </div>
+                    <input type="button" class="btn btn-success" id="startAudit" value="Start Collecting">
+                  </form>
+                </div>
+                 <hr class="noprint">
+                <div class="row">
+                    <div class="col">
+                      <h2 id="header1"></h2>
+                    </div>
+                    <div class="col">
+                      <h2 id="header2"></h2>
+                    </div>
+                    <div class="col">
+                        <div id="print" style="display: none;"><a type="btn" class="btn btn-outline-primary noprint float-right" href="javascript:window.print()">Print</a></div>
+                    </div>
+                </div>
+                <div id="showData">
+
+                </div>
+            </main>
+        </div>
+      </div>
+    <div class="fixed-bottom">
+
+     <!-- Footer -->
+     <footer class="text-center text-lg-start text-white" style="background-color: #e8e8e6">
+       <!-- Copyright -->
+       <div class="text-center p-3" style="color: black">
+         Help? please reach out to - kavin_m@optum.com       </div>
+       <!-- Copyright -->
+     </footer>
+     <!-- Footer -->
+
+   </div>
+</body>
+</html>
