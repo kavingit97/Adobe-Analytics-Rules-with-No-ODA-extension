@@ -1,11 +1,13 @@
 addEventListener("DOMContentLoaded", () => {
 
     // extracting the data from the container once launch enabled
+    let arr = [];
     extractData = () => {
         if(_satellite) {
             _satellite._container.rules.forEach( (rul)=> {
-                document.querySelector('#showData').innerHTML = !JSON.stringify(rul.actions).includes('adobeAnalyticsSetDefaultVariables.js') && JSON.stringify(rul.actions).includes('adobe-analytics/src/lib/actions/setVariables.js') ? rul.name : 'No Rule Found';
+                !JSON.stringify(rul.actions).includes('adobeAnalyticsSetDefaultVariables.js') && JSON.stringify(rul.actions).includes('adobe-analytics/src/lib/actions/setVariables.js') ? arr.push(rul.name) : 'No Rule Found';
             })
+            document.querySelector('#showData').innerHTML = arr;
         }
         else {
             alert ("Launch is still not detectable, try hard refreshing the page and do it again");
