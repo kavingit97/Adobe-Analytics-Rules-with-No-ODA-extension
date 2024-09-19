@@ -5,7 +5,6 @@ addEventListener("DOMContentLoaded", () => {
         if(_satellite) {
 
             _satellite._container.rules.forEach( (rul)=> {
-
                 !JSON.stringify(rul.actions).includes('adobeAnalyticsSetDefaultVariables.js') && JSON.stringify(rul.actions).includes('adobe-analytics/src/lib/actions/setVariables.js') ? console.log(rul.name) : null;
             })
             
@@ -17,6 +16,7 @@ addEventListener("DOMContentLoaded", () => {
     }
 
     // when user click on start audit 
+    let count = 0;
     document.getElementById('startAudit').addEventListener('click', (event) => {
         document.getElementById('startAudit').addEventListener('click', (event) => {
             if (document.querySelector('#showData').childElementCount === 0) {
