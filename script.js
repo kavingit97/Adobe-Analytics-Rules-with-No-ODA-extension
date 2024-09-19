@@ -9,7 +9,9 @@ addEventListener("DOMContentLoaded", () => {
                 arr += !JSON.stringify(rul.actions).includes('adobeAnalyticsSetDefaultVariables.js') && JSON.stringify(rul.actions).includes('adobe-analytics/src/lib/actions/setVariables.js') ? `${'<li>' + rul.name + '</li>'}` : '';
                 
             })
-            arr += '</ol>'
+            arr += '</ol>';
+            document.querySelector('#showData').innerHTML = arr;
+            
             document.querySelector('#showData').childElementCount === 0 ? document.querySelector('#showData').innerHTML = "No Rule Found" : arr;
         }
         else {
@@ -35,17 +37,20 @@ addEventListener("DOMContentLoaded", () => {
                     var checkCount = 0;
                     var clearCount = 10;
                     var checkQSI = setInterval(function() {
-                        if(typeof _satellite._container === 'object') {
-                            extractData();
-                            clearInterval(checkQSI);
-                        }
-                        else {
-                            checkCount++;
-                            if(checkCount === clearCount) {
-                                alert ('Please refresh the page and do the needful');
+                        try {
+                            if(typeof _satellite._container === 'object') {
+                                extractData();
                                 clearInterval(checkQSI);
                             }
-                        }
+                            else {
+                                checkCount++;
+                                if(checkCount === clearCount) {
+                                    alert ('Please refresh the page and do the needful');
+                                    clearInterval(checkQSI);
+                                }
+                            }
+                        } catch (error) {}
+
                     }, 2000);
                 }            
             }
