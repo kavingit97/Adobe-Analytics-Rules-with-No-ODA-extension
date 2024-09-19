@@ -1,12 +1,15 @@
 addEventListener("DOMContentLoaded", () => {
 
     // extracting the data from the container once launch enabled
-    let arr = [];
     extractData = () => {
+        let arr = '<ol>';
         if(_satellite) {
             _satellite._container.rules.forEach( (rul)=> {
-                !JSON.stringify(rul.actions).includes('adobeAnalyticsSetDefaultVariables.js') && JSON.stringify(rul.actions).includes('adobe-analytics/src/lib/actions/setVariables.js') ? arr.push(rul.name) : 'No Rule Found';
+
+                arr += !JSON.stringify(rul.actions).includes('adobeAnalyticsSetDefaultVariables.js') && JSON.stringify(rul.actions).includes('adobe-analytics/src/lib/actions/setVariables.js') ? `${'<li>' + rul.name + '</li>'}` : 'No Rule Found';
+                
             })
+            arr += '</ol>'
             document.querySelector('#showData').innerHTML = arr;
         }
         else {
