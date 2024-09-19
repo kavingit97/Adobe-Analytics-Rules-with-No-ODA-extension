@@ -15,7 +15,7 @@ addEventListener("DOMContentLoaded", () => {
             arr += '</ol>';
             document.querySelector('#showData').innerHTML += arr;
 
-            document.querySelector('#showData').childElementCount === 0 ? document.querySelector('#showData').innerHTML += "No Rule Found" : arr;
+            document.querySelector('#showData').childElementCount === 0 ? document.querySelector('#showData').innerHTML += "No Rule Found" : 'No Rule Found';
         }
         else {
             alert ("Launch is still not detectable, try hard refreshing the page and do it again");
