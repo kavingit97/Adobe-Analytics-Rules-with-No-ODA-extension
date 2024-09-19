@@ -2,6 +2,9 @@ addEventListener("DOMContentLoaded", () => {
 
     // extracting the data from the container once launch enabled
     extractData = () => {
+        let propertyInfo = document.createElement('H1');
+        propertyInfo.innerHTML = _satellite.property.name + ' >> ' + _satellite.environment.stage;
+        document.querySelector('#showData').appendChild(propertyInfo);
         let arr = '<ol>';
         if(_satellite) {
             _satellite._container.rules.forEach( (rul)=> {
@@ -11,7 +14,7 @@ addEventListener("DOMContentLoaded", () => {
             })
             arr += '</ol>';
             document.querySelector('#showData').innerHTML = arr;
-            
+
             document.querySelector('#showData').childElementCount === 0 ? document.querySelector('#showData').innerHTML = "No Rule Found" : arr;
         }
         else {
