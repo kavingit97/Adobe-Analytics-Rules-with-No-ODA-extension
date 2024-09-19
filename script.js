@@ -8,43 +8,9 @@ addEventListener("DOMContentLoaded", () => {
         let arr = '<ol>';
         if(_satellite) {
             _satellite._container.rules.forEach( (rul)=> {
+
+                arr += !JSON.stringify(rul.actions).includes('adobeAnalyticsSetDefaultVariables.js') && JSON.stringify(rul.actions).includes('adobe-analytics/src/lib/actions/setVariables.js') ? `${'<li>' + rul.name + '</li>'}` : '';
                 
-                let action = rul.actions;
-                let variable = false;
-                action.forEach((actio)=> {
-                    let modules = actio.modulePath
-                    if (modules.indexOf('setVariables.js') > -1 ) {
-                        
-                        // Track properties declaration
-                        if (actio.settings.trackerProperties) {
-                            if (actio.settings.trackerProperties.props !== undefined) {
-                                actio.settings.trackerProperties.props.forEach((prop)=> {
-                                    if (prop.name === 'prop1') {
-                                        variable = true;
-                                        // console.log('Track properties declaration', rule.name);
-                                    }
-                                })
-                            }
-                        }
-
-                        // Custom Code declaration
-                        if (actio.settings.customSetup !== undefined) {
-                            if (actio.settings.customSetup.source) {
-                                let text = actio.settings.customSetup.source.toString().replaceAll (' ', '');
-                                //console.log(text);
-                                if (text.indexOf('prop1=') > -1) {
-                                    variable = true;
-                                    // console.log('Custom Code declaration', rule.name);
-                                }
-                            }
-                        }
-
-                        
-                    }
-                })
-
-                arr += !JSON.stringify(rul.actions).includes('adobeAnalyticsSetDefaultVariables.js') && JSON.stringify(rul.actions).includes('adobe-analytics/src/lib/actions/setVariables.js') ? `${'<li>' + rul.name + ' ---> ' + variable == false ? 'C1 not declared' : 'C1 declared' + + '</li>'}` : '';
-
             })
             arr += '</ol>';
             document.querySelector('#showData').innerHTML += arr;
