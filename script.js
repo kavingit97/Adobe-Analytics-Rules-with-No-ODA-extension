@@ -18,42 +18,40 @@ addEventListener("DOMContentLoaded", () => {
     // when user click on start audit 
     let count = 0;
     document.getElementById('startAudit').addEventListener('click', (event) => {
-        document.getElementById('startAudit').addEventListener('click', (event) => {
-            if (document.querySelector('#showData').childElementCount === 0) {
-                let sTag = document.getElementById('scriptTags').value;
-                let src = sTag.substring(sTag.indexOf("https://assets.adobedtm.com"), sTag.indexOf(".min.js")) + '.min.js';
-                if(!!src){
-                    count++;
-                    console.log(src);
-                    if(count === 1) {
-                        let createScriptTag = document.createElement('script');
-                        createScriptTag.src = src;
-                        document.head.appendChild(createScriptTag);
-                        document.querySelector('.loading').hidden = false;
-                        var checkCount = 0;
-                        var clearCount = 7;
-                        var checkQSI = setInterval(function() {
-                            if(typeof __satelliteLoaded === 'boolean') {
-                                extractData();
+        if (document.querySelector('#showData').childElementCount === 0) {
+            let sTag = document.getElementById('scriptTags').value;
+            let src = sTag.substring(sTag.indexOf("https://assets.adobedtm.com"), sTag.indexOf(".min.js")) + '.min.js';
+            if(!!src){
+                count++;
+                console.log(src);
+                if(count === 1) {
+                    let createScriptTag = document.createElement('script');
+                    createScriptTag.src = src;
+                    document.head.appendChild(createScriptTag);
+                    document.querySelector('.loading').hidden = false;
+                    var checkCount = 0;
+                    var clearCount = 7;
+                    var checkQSI = setInterval(function() {
+                        if(typeof __satelliteLoaded === 'boolean') {
+                            extractData();
+                            clearInterval(checkQSI);
+                        }
+                        else {
+                            checkCount++;
+                            if(checkCount === clearCount) {
+                                alert ('Please refresh the page and do the needful');
                                 clearInterval(checkQSI);
                             }
-                            else {
-                                checkCount++;
-                                if(checkCount === clearCount) {
-                                    alert ('Please refresh the page and do the needful');
-                                    clearInterval(checkQSI);
-                                }
-                            }
-                        }, 2000);
-                    }            
-                }
-                else {
-                    alert ('Entered Script Tag is Not Valid');
-                }
+                        }
+                    }, 2000);
+                }            
             }
             else {
-                alert ('Please refresh the page and do the needful');
+                alert ('Entered Script Tag is Not Valid');
             }
-        })
+        }
+        else {
+            alert ('Please refresh the page and do the needful');
+        }
     })
 });
