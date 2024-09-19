@@ -3,11 +3,9 @@ addEventListener("DOMContentLoaded", () => {
     // extracting the data from the container once launch enabled
     extractData = () => {
         if(_satellite) {
-
             _satellite._container.rules.forEach( (rul)=> {
-                !JSON.stringify(rul.actions).includes('adobeAnalyticsSetDefaultVariables.js') && JSON.stringify(rul.actions).includes('adobe-analytics/src/lib/actions/setVariables.js') ? console.log(rul.name) : null;
+                document.body.innerHTML = !JSON.stringify(rul.actions).includes('adobeAnalyticsSetDefaultVariables.js') && JSON.stringify(rul.actions).includes('adobe-analytics/src/lib/actions/setVariables.js') ? rul.name : 'No Rule Found';
             })
-            
         }
         else {
             alert ("Launch is still not detectable, try hard refreshing the page and do it again");
@@ -30,9 +28,9 @@ addEventListener("DOMContentLoaded", () => {
                     document.head.appendChild(createScriptTag);
                     document.querySelector('.loading').hidden = false;
                     var checkCount = 0;
-                    var clearCount = 7;
+                    var clearCount = 10;
                     var checkQSI = setInterval(function() {
-                        if(typeof __satelliteLoaded === 'boolean') {
+                        if(typeof _satellite._container === 'object') {
                             extractData();
                             clearInterval(checkQSI);
                         }
