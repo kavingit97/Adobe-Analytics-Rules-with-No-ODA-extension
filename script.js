@@ -6,11 +6,11 @@ addEventListener("DOMContentLoaded", () => {
         if(_satellite) {
             _satellite._container.rules.forEach( (rul)=> {
 
-                arr += !JSON.stringify(rul.actions).includes('adobeAnalyticsSetDefaultVariables.js') && JSON.stringify(rul.actions).includes('adobe-analytics/src/lib/actions/setVariables.js') ? `${'<li>' + rul.name + '</li>'}` : 'No Rule Found';
+                arr += !JSON.stringify(rul.actions).includes('adobeAnalyticsSetDefaultVariables.js') && JSON.stringify(rul.actions).includes('adobe-analytics/src/lib/actions/setVariables.js') ? `${'<li>' + rul.name + '</li>'}` : '';
                 
             })
             arr += '</ol>'
-            document.querySelector('#showData').innerHTML = arr;
+            document.querySelector('#showData').childElementCount === 0 ? document.querySelector('#showData').innerHTML = "No Rule Found" : arr;
         }
         else {
             alert ("Launch is still not detectable, try hard refreshing the page and do it again");
