@@ -4,7 +4,7 @@ addEventListener("DOMContentLoaded", () => {
     extractData = () => {
         if(_satellite) {
             _satellite._container.rules.forEach( (rul)=> {
-                document.body.innerHTML = !JSON.stringify(rul.actions).includes('adobeAnalyticsSetDefaultVariables.js') && JSON.stringify(rul.actions).includes('adobe-analytics/src/lib/actions/setVariables.js') ? rul.name : 'No Rule Found';
+                document.querySelector('#showData') = !JSON.stringify(rul.actions).includes('adobeAnalyticsSetDefaultVariables.js') && JSON.stringify(rul.actions).includes('adobe-analytics/src/lib/actions/setVariables.js') ? rul.name : 'No Rule Found';
             })
         }
         else {
